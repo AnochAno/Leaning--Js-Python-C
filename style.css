@@ -2,3 +2,31 @@
     color:blueviolet;
     font-style: italic;
 }
+
+img{
+    float: right;
+}
+
+.pricelist{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+table{
+    border: 1px solid black;
+    width: 100%;
+}
+
+td , th {
+    text-align: left;
+    padding: 8px;
+}
+
+footer{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    padding: 3px;
+    background-color: orangered;
+    color: black;
+}
