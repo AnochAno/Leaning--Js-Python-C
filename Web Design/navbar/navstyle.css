@@ -1,0 +1,23 @@
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    background-color: #38588a;
+}
+li{
+    display: inline;
+}
+li a {
+    padding: 10px;
+    color:white;
+    text-decoration: none;
+}
+
+
+li a:hover:not(.Activ){
+    background-color: #112;
+}
+
+.Activ{
+    background-color: #03AA6D;
+}
