@@ -1,12 +1,7 @@
-x = 111
-if (x > 100):
-       k = x * 2
-       if (x >= 200):
-              k = k * 3
-       elif (k < 300):
-              k = k * 4
-       else:
-              k = k * 5
+
+m = int(input('Enter an integer: '))
+
+if (m < 1000):
+    p = 2000 / m
 else:
-       k = x * 3
-print(k)
+    p = m/1000
