@@ -1,2 +1,5 @@
 print ("hello")
-int 21
+x = 15
+y = 25
+
+print(x+y)
