@@ -6,5 +6,6 @@ print (value[0:4])
 value.append(60)
 print(value)
 
-value.delete(10)
+del value[1]
 print(value)
+
