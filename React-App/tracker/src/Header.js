@@ -1,7 +1,10 @@
 import React from 'react'
 
+
 export const Header = () => {
   return (
-    <div>Header</div>
+    <h1>
+        App Tracker
+    </h1>
   )
 }
