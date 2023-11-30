@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+nav {
+    background-color: #000;
+    padding: 10px 0px;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    max-width: 10000px;
+}
+
+nav a {
+    color: rgb(172, 35, 35);
+    text-decoration: none;
+    margin: 0.5px 0.5px; 
+    font-size: 10px;
+    width: 100%;
+}
+
+nav a i {
+    margin-right: 2mm;
+    margin-left: 1mm;
+}
+
+.img-bold,
+.img-italic,
+.img-left,
+.img-right,
+.img-justify,
+.img-center,
+.img-undo,
+.img-redo {
+    width: 15px;
+    height: 15px;
+}
+
+.img-underline,
+.img-color {
+    width: 20px;
+    height: 20px;
+}

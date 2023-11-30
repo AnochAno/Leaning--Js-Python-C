@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .editor-panel {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        button {
+            font-size: 16px;
+            cursor: pointer;
+            transform: none;
+        }
+
+        #editor {
+            width: 80%;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-panel">
+        <button onclick="formatText('bold')"><img src="Resources/bold-xxl.png" alt=""></button>
+        <button onclick="formatText('italic')">Italic</button>
+        <button onclick="alignText('left')">Left</button>
+        <button onclick="alignText('center')">Center</button>
+        <button onclick="alignText('right')">Right</button>
+    </div>
+    <div id="editor" contenteditable="true">
+        Type your text here...
+    </div>
+
+    <script>
+        function formatText(command) {
+            document.execCommand(command, false, null);
+        }
+
+        function alignText(align) {
+            document.execCommand('justify' + align, false, null);
+        }
+    </script>
+</body>
+</html>

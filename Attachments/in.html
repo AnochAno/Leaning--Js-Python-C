@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web-based Text Editing Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-1a6fl5q5YorljjzdGwP0ttHrPz8FkU4/r4Os+33tGOVX7gf7ybHfz1wd6ZL83NVqFS9KGmCK5MzH5j7kgS2Iug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styleSheets/Feature.css">
+    <link rel="stylesheet" href="styleSheets/EditorPanel.css">
+
+    <style>
+        #colorPicker {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="editor-panel">
+    <nav>
+        <a href="#" onclick="formatText('bold')">
+            <i class="fas fa-bold"></i>
+            <img src="Resources/bold-xxl.png" alt="" class="img-bold">
+        </a>
+
+        <a href="#" onclick="formatText('underline')">
+            <i class="fas fa-underline"></i>
+            <img src="Resources/format_underline_white_192x192.png" alt="" class="img-underline">
+        </a>
+
+        <a href="#" onclick="formatText('italic')">
+            <i class="fas fa-italic"></i>
+            <img src="Resources/italic-xxl.png" alt="" class="img-italic">
+        </a>
+
+        <a href="#" id="colorLink" onclick="toggleColorPicker()">
+            <i class="fas fa-paint-brush"></i>
+            <img src="Resources/color.jpeg" alt="" class="img-color">
+            <input type="color" id="colorPicker" onchange="changeColor()">
+        </a>
+
+        <a href="#" onclick="alignText('left')">
+            <i class="fas fa-align-left"></i>
+            <img src="Resources/left.png" alt="" class="img-left">
+        </a>
+
+        <a href="#" onclick="alignText('center')">
+            <i class="fas fa-align-center"></i>
+            <img src="Resources/center.png" alt="" class="img-center">
+        </a>
+
+        <a href="#" onclick="alignText('right')">
+            <i class="fas fa-align-right"></i>
+            <img src="Resources/right.png" alt="" class="img-right">
+        </a>
+
+        <a href="#" onclick="justifyText()">
+            <i class="fas fa-align-justify"></i>
+            <img src="Resources/justify.png" alt="" class="img-justify">
+        </a>
+
+        <a href="#" onclick="undoText()">
+            <i class="fas fa-undo"></i>
+            <img src="Resources/undo-4-32.png" alt="" class="img-undo">
+        </a>
+
+        <a href="#" onclick="redoText()">
+            <i class="fas fa-redo"></i>
+            <img src="Resources/action-redo-32.png" alt="" class="img-redo">
+        </a>
+    </nav>
+</div>
+
+<div id="editor" contenteditable="true">
+    Type your text here...
+</div>
+
+<script>
+    let contentStack = [];
+    let currentIndex = -1;
+
+    function saveContent() {
+        let content = document.getElementById('editor').innerHTML;
+        if (currentIndex === contentStack.length - 1) {
+            contentStack.push(content);
+            currentIndex++;
+        } else {
+            contentStack = contentStack.slice(0, currentIndex + 1);
+            contentStack.push(content);
+            currentIndex++;
+        }
+    }
+
+    function restoreContent(index) {
+        if (index >= 0 && index < contentStack.length) {
+            document.getElementById('editor').innerHTML = contentStack[index];
+        }
+    }
+
+    function formatText(command) {
+        document.execCommand(command, false, null);
+        saveContent();
+    }
+
+    function alignText(align) {
+        document.execCommand('justify' + align, false, null);
+        saveContent();
+    }
+
+    function justifyText() {
+        document.execCommand('justifyFull', false, null);
+        saveContent();
+    }
+
+    function changeColor() {
+        let color = document.getElementById('colorPicker').value;
+        document.execCommand('foreColor', false, color);
+        saveContent();
+    }
+
+    function undoText() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            restoreContent(currentIndex);
+        }
+    }
+
+    function redoText() {
+        if (currentIndex < contentStack.length - 1) {
+            currentIndex++;
+            restoreContent(currentIndex);
+        }
+    }
+
+    function toggleColorPicker() {
+        let colorPicker = document.getElementById('colorPicker');
+        colorPicker.style.display = colorPicker.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>
